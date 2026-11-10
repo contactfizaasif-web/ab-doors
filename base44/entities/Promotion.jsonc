@@ -1,0 +1,85 @@
+{
+  "name": "Promotion",
+  "type": "object",
+  "properties": {
+    "kind": {
+      "type": "string",
+      "enum": [
+        "deal_of_the_day",
+        "festival"
+      ],
+      "description": "Which promotional section this drives"
+    },
+    "eyebrow": {
+      "type": "string",
+      "description": "Small label above the heading"
+    },
+    "title": {
+      "type": "string",
+      "description": "Campaign or offer heading"
+    },
+    "description": {
+      "type": "string",
+      "description": "Short supporting text"
+    },
+    "image_url": {
+      "type": "string",
+      "description": "Campaign image URL"
+    },
+    "product_slug": {
+      "type": "string",
+      "description": "Slug of the featured door for a deal"
+    },
+    "original_price": {
+      "type": "number",
+      "description": "Original price in PKR, only when a real offer exists"
+    },
+    "offer_price": {
+      "type": "number",
+      "description": "Offer price in PKR"
+    },
+    "cta_label": {
+      "type": "string",
+      "description": "Button label"
+    },
+    "cta_link": {
+      "type": "string",
+      "description": "Button link, e.g. /shop"
+    },
+    "starts_at": {
+      "type": "string",
+      "description": "Campaign start date (YYYY-MM-DD)"
+    },
+    "ends_at": {
+      "type": "string",
+      "description": "Campaign end date (YYYY-MM-DD)"
+    },
+    "is_active": {
+      "type": "boolean",
+      "description": "Turn this campaign on",
+      "default": false
+    }
+  },
+  "required": [
+    "kind",
+    "title"
+  ],
+  "rls": {
+    "read": {},
+    "create": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

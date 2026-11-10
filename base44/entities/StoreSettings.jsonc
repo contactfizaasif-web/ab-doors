@@ -1,0 +1,48 @@
+{
+  "name": "StoreSettings",
+  "type": "object",
+  "properties": {
+    "tagline": {
+      "type": "string",
+      "description": "Short message shown in the top bar"
+    },
+    "phone": {
+      "type": "string",
+      "description": "Business phone number"
+    },
+    "whatsapp": {
+      "type": "string",
+      "description": "WhatsApp number, with country code"
+    },
+    "email": {
+      "type": "string",
+      "description": "Business email address"
+    },
+    "hours": {
+      "type": "string",
+      "description": "Business hours, e.g. Mon\u2013Sat, 10am \u2013 8pm"
+    },
+    "address": {
+      "type": "string",
+      "description": "Business address in Lahore"
+    }
+  },
+  "rls": {
+    "read": {},
+    "create": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

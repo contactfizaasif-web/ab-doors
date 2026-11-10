@@ -1,0 +1,120 @@
+{
+  "name": "CustomDoorRequest",
+  "type": "object",
+  "properties": {
+    "customer_name": {
+      "type": "string",
+      "description": "Customer full name"
+    },
+    "phone": {
+      "type": "string",
+      "description": "Phone number"
+    },
+    "whatsapp": {
+      "type": "string",
+      "description": "WhatsApp number"
+    },
+    "email": {
+      "type": "string",
+      "description": "Optional email address"
+    },
+    "city": {
+      "type": "string",
+      "description": "City or delivery location"
+    },
+    "door_category": {
+      "type": "string",
+      "description": "Requested door category"
+    },
+    "width_in": {
+      "type": "string",
+      "description": "Required width (inches)"
+    },
+    "height_in": {
+      "type": "string",
+      "description": "Required height (inches)"
+    },
+    "thickness_in": {
+      "type": "string",
+      "description": "Optional thickness (inches)"
+    },
+    "material": {
+      "type": "string",
+      "description": "Preferred material"
+    },
+    "finish": {
+      "type": "string",
+      "description": "Preferred finish or colour"
+    },
+    "design_description": {
+      "type": "string",
+      "description": "Description of the desired design"
+    },
+    "quantity": {
+      "type": "number",
+      "description": "Number of doors required",
+      "default": 1
+    },
+    "budget": {
+      "type": "string",
+      "description": "Optional budget range"
+    },
+    "notes": {
+      "type": "string",
+      "description": "Additional instructions"
+    },
+    "needs_measuring_help": {
+      "type": "boolean",
+      "description": "Customer needs help with measurements",
+      "default": false
+    },
+    "reference_image_uri": {
+      "type": "string",
+      "description": "Private storage URI of a reference image"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "new",
+        "reviewing",
+        "quoted",
+        "closed"
+      ],
+      "description": "Internal review status",
+      "default": "new"
+    },
+    "admin_notes": {
+      "type": "string",
+      "description": "Internal notes"
+    }
+  },
+  "required": [
+    "customer_name",
+    "phone"
+  ],
+  "rls": {
+    "create": {},
+    "read": {
+      "$or": [
+        {
+          "created_by_id": "{{user.id}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

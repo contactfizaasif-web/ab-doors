@@ -1,0 +1,74 @@
+{
+  "name": "Inquiry",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Customer name"
+    },
+    "phone": {
+      "type": "string",
+      "description": "Phone or WhatsApp number"
+    },
+    "email": {
+      "type": "string",
+      "description": "Optional email address"
+    },
+    "inquiry_type": {
+      "type": "string",
+      "description": "Product inquiry, custom door, availability, delivery or general"
+    },
+    "message": {
+      "type": "string",
+      "description": "Customer message"
+    },
+    "product_name": {
+      "type": "string",
+      "description": "Door the inquiry is about"
+    },
+    "product_sku": {
+      "type": "string",
+      "description": "Door code the inquiry is about"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "new",
+        "answered",
+        "closed"
+      ],
+      "description": "Internal follow-up status",
+      "default": "new"
+    }
+  },
+  "required": [
+    "name",
+    "phone",
+    "message"
+  ],
+  "rls": {
+    "create": {},
+    "read": {
+      "$or": [
+        {
+          "created_by_id": "{{user.id}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}
